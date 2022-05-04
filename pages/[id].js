@@ -36,21 +36,13 @@ const renderNestedList = (block) => {
   const value = block[type];
   if (!value) return null;
 
-  const isNumberedList = value.children[0].type === 'numbered_list_item'
+  const isNumberedList = value.children[0].type === "numbered_list_item";
 
   if (isNumberedList) {
-    return (
-      <ol>
-        {value.children.map((block) => renderBlock(block))}
-      </ol>
-    )
+    return <ol>{value.children.map((block) => renderBlock(block))}</ol>;
   }
-  return (
-    <ul>
-      {value.children.map((block) => renderBlock(block))}
-    </ul>
-  )
-}
+  return <ul>{value.children.map((block) => renderBlock(block))}</ul>;
+};
 
 const renderBlock = (block) => {
   const { type, id } = block;
@@ -151,10 +143,10 @@ const renderBlock = (block) => {
         </figure>
       );
     case "bookmark":
-      const href = value.url
+      const href = value.url;
       return (
-        <a href={ href } target="_brank" className={styles.bookmark}>
-          { href }
+        <a href={href} target="_brank" className={styles.bookmark}>
+          {href}
         </a>
       );
     default:
@@ -173,6 +165,30 @@ export default function Post({ page, blocks }) {
       <Head>
         <title>{page.properties.Name.title[0].plain_text}</title>
         <link rel="icon" href="/favicon.ico" />
+        <title>{`${page.properties.Name.title[0].plain_text} | ✨dlquff✨ 의 개발 블로그 : )`}</title>
+        <meta name="description" content="✨dlquff✨ 의 개발 블로그 : )" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content={page.properties.Name.title[0].plain_text}
+        />
+        <meta
+          property="og:description"
+          content="✨dlquff✨ 의 개발 블로그 : )"
+        />
+        <meta
+          property="og:site_name"
+          content={page.properties.Name.title[0].plain_text}
+        />
+        <meta property="twitter:card" content="summary" />
+        <meta
+          property="twitter:title"
+          content={page.properties.Name.title[0].plain_text}
+        />
+        <meta
+          property="twitter:description"
+          content="✨dlquff✨ 의 개발 블로그 : )"
+        />
       </Head>
 
       <article className={styles.container}>

@@ -10,8 +10,23 @@ export default function Home({ posts }) {
   return (
     <div>
       <Head>
-        <title>Notion Next.js blog</title>
+        <title>📓 dlquff's BLOG </title>
         <link rel="icon" href="/favicon.ico" />
+        <title>{`✨dlquff✨ 의 개발 블로그 : )`}</title>
+        <meta name="description" content="✨dlquff✨ 의 개발 블로그 : )" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="📓 dlquff's BLOG " />
+        <meta
+          property="og:description"
+          content="✨dlquff✨ 의 개발 블로그 : )"
+        />
+        <meta property="og:site_name" content="📓 dlquff's BLOG " />
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:title" content="📓 dlquff's BLOG" />
+        <meta
+          property="twitter:description"
+          content="✨dlquff✨ 의 개발 블로그 : )"
+        />
       </Head>
 
       <main className={styles.container}>
