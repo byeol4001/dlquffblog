@@ -119,11 +119,13 @@ export default function Home({ posts }) {
         </div>
         <ol className={styles.posts}>
           {sortList.map((post) => {
-            const date = new Date(post.created_time).toLocaleString("en-US", {
-              month: "short",
-              day: "2-digit",
-              year: "numeric",
-            });
+            const date = new Date(post.created_time)
+              .toLocaleString("ko-KR", {
+                month: "2-digit",
+                day: "2-digit",
+                year: "numeric",
+              })
+              .replace(/(\s*)/g, "");
             return (
               <li key={post.id} className={styles.post}>
                 <h3 className={styles.postTitle}>
