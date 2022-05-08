@@ -83,7 +83,7 @@ export default function Home({ posts }) {
         </div>
         <ol className={styles.posts}>
           {sortList.map((post) => {
-            const date = new Date(post.created_time)
+            const date = new Date(post.properties.date.date.start)
               .toLocaleString("ko-KR", {
                 month: "2-digit",
                 day: "2-digit",
