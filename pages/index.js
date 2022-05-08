@@ -3,10 +3,33 @@ import Link from "next/link";
 import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
 import styles from "./index.module.css";
+import { useState, useMemo } from "react";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
+  const [sortDescending, setSortDescending] = useState(false);
+
+  const sortList = useMemo(() => {
+    if (!sortDescending) {
+      return posts.sort((postA, postB) =>
+        postA.properties.date.date.start < postB.properties.date.date.start
+          ? -1
+          : postA.properties.date.date.start > postB.properties.date.date.start
+          ? 1
+          : 0
+      );
+    } else {
+      return posts.sort((postA, postB) =>
+        postA.properties.date.date.start > postB.properties.date.date.start
+          ? -1
+          : postA.created_time < postB.created_time
+          ? 1
+          : 0
+      );
+    }
+  }, [sortDescending]);
+
   return (
     <div>
       <Head>
@@ -79,23 +102,35 @@ export default function Home({ posts }) {
           </p>
         </header>
 
-        <h2 className={styles.heading}>All Posts</h2>
+        <h2 className={styles.heading}>📓 All Posts</h2>
+        <div className={styles.sortWrap}>
+          <div
+            onClick={() => setSortDescending(false)}
+            className={!sortDescending ? styles.sortBold : null}
+          >
+            작성순
+          </div>
+          <div
+            onClick={() => setSortDescending(true)}
+            className={sortDescending ? styles.sortBold : null}
+          >
+            최신순
+          </div>
+        </div>
         <ol className={styles.posts}>
-          {posts.map((post) => {
-            const date = new Date(post.last_edited_time).toLocaleString(
-              "en-US",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              }
-            );
+          {sortList.map((post) => {
+            const date = new Date(post.created_time).toLocaleString("en-US", {
+              month: "short",
+              day: "2-digit",
+              year: "numeric",
+            });
             return (
               <li key={post.id} className={styles.post}>
                 <h3 className={styles.postTitle}>
                   <Link href={`/${post.id}`}>
                     <a>
                       <Text text={post.properties.Name.title} />
+                      <Text text={post.properties.Create} />
                     </a>
                   </Link>
                 </h3>
