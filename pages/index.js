@@ -50,6 +50,12 @@ export default function Home({ posts }) {
           property="twitter:description"
           content="✨dlquff✨ 의 개발 블로그 : )"
         />
+
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4849698160989720"
+          crossorigin="anonymous"
+        ></script>
       </Head>
 
       <main className={styles.container}>
