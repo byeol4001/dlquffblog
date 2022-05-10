@@ -4,6 +4,8 @@ import { getDatabase, getPage, getBlocks } from "../lib/notion";
 import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
+import { MoveButton } from "../components/MoveButton";
+import { HomeMoveButton } from "../stories/MoveButton.stories";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -201,7 +203,7 @@ export default function Post({ page, blocks }) {
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
           <Link href="/">
-            <a className={styles.back}>← Go home</a>
+            <HomeMoveButton label="🔖&nbsp;&nbsp;리스트로 이동" />
           </Link>
         </section>
       </article>
