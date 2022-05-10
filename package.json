@@ -6,7 +6,9 @@
     "dev": "next dev",
     "postbuild": "next-sitemap",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@notionhq/client": "^0.4.4",
@@ -15,6 +17,15 @@
     "react-dom": "17.x"
   },
   "devDependencies": {
-    "next-sitemap": "^2.5.20"
+    "@babel/core": "^7.17.10",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.11",
+    "babel-loader": "^8.2.5",
+    "next-sitemap": "^2.5.20",
+    "sb": "^6.4.22"
   }
 }
